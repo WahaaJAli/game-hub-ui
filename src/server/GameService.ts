@@ -8,6 +8,7 @@ export interface IPlatform {
 export interface IGame {
   id: number
   background_image: string
+  metacritic: number
   name: string
   parent_platforms: { platform: IPlatform }[]
   rating: number
