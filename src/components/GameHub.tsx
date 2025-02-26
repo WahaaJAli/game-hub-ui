@@ -1,7 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react"
 import { JSX } from "react"
-import NavBar from "../NavBar/NavBar"
-import GameGrid from "../GameGrid"
+import NavBar from "./NavBar"
+import GameGrid from "./GameGrid"
 
 const GameHub = (): JSX.Element => {
   return (

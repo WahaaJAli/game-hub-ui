@@ -1,7 +1,7 @@
 import { Box, HStack, Image, Text } from '@chakra-ui/react'
 import { JSX } from 'react'
-import logo from '../../svgs/aveda.svg'
-import ColorModeSwitch from '../ColorModeSwitch/ColorModeSwitch'
+import logo from '../svgs/aveda.svg'
+import ColorModeSwitch from './ColorModeSwitch'
 
 const NavBar = (): JSX.Element => {
   return (
