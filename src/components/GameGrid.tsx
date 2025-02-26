@@ -8,7 +8,7 @@ const GameGrid = () => {
 
   return (
     <>
-      <SimpleGrid column={{ sm: 1, md: 2, lg: 3, xl: 4}} spacing={5} >
+      <SimpleGrid column={3} spacing={5} >
         { games?.map(game => <GameCard key={game.id} game={game}></GameCard>) }
       </SimpleGrid>
     </>
