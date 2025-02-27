@@ -16,10 +16,12 @@ const useGames = () => {
 
   const getGames = async () => {
     const { request, cancel } = GameService.get<FetchFromServer>()
+
+    setLoading(true)
     request
-      .then(({data: { results }}) => setGames(results))
-      .catch(error => {
-        if(error instanceof CanceledError) return
+    .then(({data: { results }}) => setGames(results))
+    .catch(error => {
+      if(error instanceof CanceledError) return
         setError(error.message)
       })
       .finally(() => setLoading(false))
