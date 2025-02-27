@@ -12,10 +12,10 @@ const GameHub = (): JSX.Element => {
         </GridItem>
 
         <Show above="lg">
-          <GridItem area='aside'>Aside</GridItem>
+          <GridItem width='21vw' area='aside'>Aside</GridItem>
         </Show>
 
-        <GridItem area='main'>
+        <GridItem width='75vw' area='main'>
           <GameGrid></GameGrid>
         </GridItem>
       </Grid>
