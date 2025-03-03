@@ -1,34 +1,22 @@
-import { CanceledError } from 'axios'
-import { useEffect, useState } from "react"
-import GameService, { IGame } from '../server/GameService'
+import useData from './useData'
 
-interface FetchFromServer {
-  count: number
-  results: IGame[]
+export interface IPlatform {
+  id: number
+  name: string
+  slug: string
+}
+export interface IGame {
+  id: number
+  background_image: string
+  metacritic: number
+  name: string
+  parent_platforms: { platform: IPlatform }[]
+  rating: number
+  released: string
+  slug: string
+  updated: string
 }
 
-const useGames = () => {
-  useEffect(() => { getGames() }, [])
-
-  const [games, setGames] = useState<IGame[]>()
-  const [error, setError] = useState('')
-  const [isLoading, setLoading] = useState<boolean>(true)
-
-  const getGames = async () => {
-    const { request, cancel } = GameService.get<FetchFromServer>()
-
-    setLoading(true)
-    request
-    .then(({data: { results }}) => setGames(results))
-    .catch(error => {
-      if(error instanceof CanceledError) return
-        setError(error.message)
-      })
-      .finally(() => setLoading(false))
-
-    return () => cancel()
-  }
-  return { games, error, isLoading, setGames, setError, setLoading }
-}
+const useGames = () => useData<IGame>('/games')
 
 export default useGames

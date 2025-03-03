@@ -1,5 +1,5 @@
 import { HStack, Icon } from "@chakra-ui/react"
-import { IPlatform } from "../server/GameService"
+import { IPlatform } from "../hooks/useGames"
 import { IconType } from "react-icons/lib"
 import Icons from '../icons/Icons'
 
