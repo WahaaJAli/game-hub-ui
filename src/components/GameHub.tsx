@@ -20,7 +20,7 @@ const GameHub = (): JSX.Element => {
 
         <Show above="lg">
           <GridItem area='aside'>
-            <GenreList onSelectGenre={genre => setSelectedGenre(genre)}/>
+            <GenreList selectedGenre={selectedGenre} onSelectGenre={genre => setSelectedGenre(genre)}/>
           </GridItem>
         </Show>
 

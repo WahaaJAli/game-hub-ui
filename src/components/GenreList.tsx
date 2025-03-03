@@ -5,12 +5,15 @@ import Prompt from './Prompt'
 import GenreListSkeleton from './GenreListSkeleton'
 
 interface GenreListProps {
+  selectedGenre: IGenre | null
   onSelectGenre: (genre: IGenre) => void
 }
 
-const GenreList = ({ onSelectGenre }: GenreListProps) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres()
   const genresAvailable: boolean = genres?.length !== 0
+
+  const getFontWeight = (genreId: number): string => genreId === selectedGenre?.id ? 'bold' : 'normal' 
 
   return (
     <>
@@ -24,7 +27,7 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
           {genres?.map(genre => <ListItem key={genre.id} paddingY='5px'>
             <HStack>
               <Image src={getCroppedImageURL(genre.image_background)} boxSize='32px' borderRadius={3} />
-              <Button onClick={() => onSelectGenre(genre)} fontSize='16px' variant='unstyled'>{genre.name}</Button>
+              <Button fontWeight={getFontWeight(genre.id)} onClick={() => onSelectGenre(genre)} fontSize='16px' variant='unstyled'>{genre.name}</Button>
             </HStack>
           </ListItem>)}
         </List>
