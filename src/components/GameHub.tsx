@@ -4,6 +4,7 @@ import NavBar from "./NavBar"
 import GameGrid from "./GameGrid"
 import GenreList from "./GenreList"
 import { IGenre } from "../hooks/useGenres"
+import PlatformSelector from "./PlatformSelector"
 
 const GameHub = (): JSX.Element => {
   const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null)
@@ -25,6 +26,7 @@ const GameHub = (): JSX.Element => {
         </Show>
 
         <GridItem area='main'>
+          <PlatformSelector />
           <GameGrid selectedGenre={selectedGenre} ></GameGrid>
         </GridItem>
       </Grid>

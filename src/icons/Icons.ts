@@ -1,5 +1,5 @@
 import { BsBank as Bank } from "react-icons/bs";
-import { BsGlobe as Globe } from 'react-icons/bs'
+import { BsGlobe as Globe, BsChevronDown as ChevronDown } from 'react-icons/bs'
 import { FaAndroid as Android, FaApple as Apple, FaLinux as Linux, FaPlaystation as Playstation, FaWindows as Windows, FaXbox as Xbox } from 'react-icons/fa'
 import { GiButterfly as Butterfly, GiButterflyFlower as ButterflyFlower } from "react-icons/gi"
 import { IconType } from "react-icons/lib";
@@ -14,6 +14,7 @@ const Icons: { [key: string]: IconType } = {
   Butterfly,
   ButterflyFlower,
   ButterflyLight,
+  ChevronDown,
   Globe,
   Iphone,
   Linux,
