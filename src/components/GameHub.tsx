@@ -5,9 +5,11 @@ import GameGrid from "./GameGrid"
 import GenreList from "./GenreList"
 import { IGenre } from "../hooks/useGenres"
 import PlatformSelector from "./PlatformSelector"
+import { IPlatform } from "../hooks/useGames"
 
 const GameHub = (): JSX.Element => {
   const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null)
+  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(null)
 
   return (
     <>
@@ -26,8 +28,8 @@ const GameHub = (): JSX.Element => {
         </Show>
 
         <GridItem area='main'>
-          <PlatformSelector />
-          <GameGrid selectedGenre={selectedGenre} ></GameGrid>
+          <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={platform => setSelectedPlatform(platform)} />
+          <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre} ></GameGrid>
         </GridItem>
       </Grid>
     </>

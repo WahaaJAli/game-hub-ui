@@ -5,21 +5,30 @@ import { GiButterfly as Butterfly, GiButterflyFlower as ButterflyFlower } from "
 import { IconType } from "react-icons/lib";
 import { MdPhoneIphone as Iphone } from 'react-icons/md'
 import { PiButterflyLight as ButterflyLight } from "react-icons/pi"
-import { SiNintendo as Nintendo } from 'react-icons/si'
+import { SiAtari as Atari, SiCommodore as Commodore, SiNintendo3Ds as Nintendo3D, SiNintendo as Nintendo, SiNeovim as Neovim, SiSega as Sega } from 'react-icons/si'
+import { IoGameController as GameController } from "react-icons/io5"
+import { FaNeos as NeoGeo } from 'react-icons/fa6'
 
 const Icons: { [key: string]: IconType } = {
   Android,
   Apple,
+  Atari,
   Bank,
   Butterfly,
   ButterflyFlower,
   ButterflyLight,
   ChevronDown,
+  Commodore,
+  GameController,
   Globe,
   Iphone,
   Linux,
+  Neovim,
+  NeoGeo,
   Nintendo,
+  Nintendo3D,
   Playstation,
+  Sega,
   Windows,
   Xbox,
 }
