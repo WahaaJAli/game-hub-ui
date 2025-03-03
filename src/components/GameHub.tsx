@@ -8,18 +8,21 @@ const GameHub = (): JSX.Element => {
 
   return (
     <>
-      <Grid templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}>
+      <Grid templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
+        templateColumns={{ base: '1fr', lg: '230px 1fr' }} 
+        paddingX={4} marginBottom={4}>
+        
         <GridItem area='nav'>
           <NavBar></NavBar>
         </GridItem>
 
         <Show above="lg">
-          <GridItem width='21vw' area='aside'>
+          <GridItem area='aside'>
             <GenreList/>
           </GridItem>
         </Show>
 
-        <GridItem width='75vw' area='main'>
+        <GridItem area='main'>
           <GameGrid></GameGrid>
         </GridItem>
       </Grid>

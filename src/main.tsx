@@ -9,7 +9,7 @@ import GameHub from './components/GameHub'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ColorModeScript initialColorMode={theme.initialColorMode} />
       <GameHub />
     </ChakraProvider>
   </StrictMode>

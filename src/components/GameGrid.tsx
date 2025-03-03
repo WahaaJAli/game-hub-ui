@@ -17,7 +17,7 @@ const GameGrid = () => {
       { error && <Error>{error}</Error> }
       
       { (games?.length !== 0 ) &&
-        <SimpleGrid columns={3} columnGap={2} rowGap={7} >
+        <SimpleGrid columns={3} gap={4} >
           { isLoading && skeletons.map(skeleton => 
             <GameCardContainer>
               <GameCardSkeleton key={skeleton}/>

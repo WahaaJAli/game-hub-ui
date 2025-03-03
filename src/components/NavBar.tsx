@@ -6,7 +6,7 @@ import ColorModeSwitch from './ColorModeSwitch'
 const NavBar = (): JSX.Element => {
   return (
     <>
-      <HStack justifyContent='space-between' padding='10px'>
+      <HStack justifyContent='space-between' paddingY={6}>
         <Box display='flex' alignItems='center'>
           <Image src={logo} width='10%' marginRight='10px' ></Image>
           <Text fontSize='xl'>AQSH GAME HUB</Text>

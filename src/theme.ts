@@ -1,9 +1,16 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react"
+import { extendTheme, ThemeOverride } from "@chakra-ui/react"
 
-const config: ThemeConfig = {
-  initialColorMode: 'dark'
-}
-
-const theme = extendTheme({ config })
+const theme: ThemeOverride = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+  },
+  styles: {
+    global: {
+      '::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+  },
+})
 
 export default theme
