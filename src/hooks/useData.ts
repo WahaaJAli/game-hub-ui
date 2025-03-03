@@ -1,4 +1,4 @@
-import { CanceledError } from 'axios'
+import { AxiosRequestConfig, CanceledError } from 'axios'
 import { useEffect, useState } from "react"
 import api from '../server/api'
 
@@ -7,8 +7,8 @@ interface FetchResponse<T> {
   results: T[]
 }
 
-const useData = <T>(endpoint: string) => {
-  useEffect(() => { getData() }, [])
+const useData = <T>(endpoint: string, requestConfigs?: AxiosRequestConfig, deps?: any[] ) => {
+  useEffect(() => { getData() }, deps ? [...deps]: [])
 
   const [data, setData] = useState<T[]>()
   const [error, setError] = useState('')
@@ -18,7 +18,7 @@ const useData = <T>(endpoint: string) => {
     const controller = new AbortController()
 
     setLoading(true)
-    api.get<FetchResponse<T>>(endpoint, {signal: controller.signal})
+    api.get<FetchResponse<T>>(endpoint, {signal: controller.signal, ...requestConfigs })
       .then(({data: { results }}) => setData(results))
       .catch(error => {
         if(error instanceof CanceledError) return
