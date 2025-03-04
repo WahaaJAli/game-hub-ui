@@ -23,7 +23,7 @@ const GameHub = (): JSX.Element => {
     <>
       <Grid templateAreas={{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
         templateColumns={{ base: '1fr', lg: '230px 1fr' }} 
-        paddingX={4} marginBottom={4}>
+        px={4} marginBottom={4}>
         
         <GridItem area='nav'>
           <NavBar onSearch={searchText => setGameQuery({...gameQuery, searchText})} ></NavBar>
@@ -38,7 +38,7 @@ const GameHub = (): JSX.Element => {
         <GridItem area='main'>
           <GameHeading gameQuery={gameQuery} />
           <Flex>
-            <Box marginRight={2}>
+            <Box mr={2}>
               <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})}/>
             </Box>
             <SortSelector selectedSortOrder={gameQuery.sortOrder} onSelectSortOrder={sortOrder => setGameQuery({...gameQuery, sortOrder})}/>

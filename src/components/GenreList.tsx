@@ -19,14 +19,14 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
     <>
       { (!genresAvailable && !isLoading && !error) && (<Prompt>No item(s) found!</Prompt>) }
       { error && null }
-      
+
       { genresAvailable &&
         <>
-          <Heading as='h4' fontSize='2xl' marginBottom={3} >Genres</Heading>
+          <Heading as='h4' fontSize='2xl' mb={3} >Genres</Heading>
           <List>
             { isLoading && [...Array(16)].map((_, index) => <GenreListSkeleton key={index} />) }
             {genres?.map(genre => 
-              <ListItem key={genre.id} paddingY='5px'>
+              <ListItem key={genre.id} py='5px'>
                 <HStack>
                   <Image src={getCroppedImageURL(genre.image_background)} boxSize='32px' borderRadius={3} objectFit='cover' />
                   <Button fontWeight={getFontWeight(genre.id)} onClick={() => onSelectGenre(genre)} fontSize='16px' variant='unstyled'>{genre.name}</Button>

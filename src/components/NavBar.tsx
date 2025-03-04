@@ -11,8 +11,8 @@ interface NavBarProps {
 const NavBar = ({ onSearch }: NavBarProps): JSX.Element => {
   return (
     <>
-      <HStack paddingY={6}>
-        <Image src={logo} width='10%' marginRight='10px' />
+      <HStack py={6}>
+        <Image src={logo} width='10%' mr='10px' />
         {/* <Text whiteSpace='nowrap' fontSize='xl'>AQSH GAME HUB</Text> */}
         <SearchInput onSearch={onSearch} />
         <ColorModeSwitch />

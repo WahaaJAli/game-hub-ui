@@ -27,7 +27,7 @@ const SearchInput = ({ onSearch }: SearchInputProps) => {
       <InputGroup>
         <InputLeftElement children={<Icons.Search/>} />
         <Input ref={ref} borderRadius={20} placeholder='Search 882,071 games' variant={'filled'} />
-        <InputRightElement paddingRight={16} >
+        <InputRightElement pr={16} >
           <HStack spacing={1} fontSize="xs" color="gray.400">
             <Text border='1px' borderRadius={4} px={2}>alt</Text>
             <Text>+</Text>
