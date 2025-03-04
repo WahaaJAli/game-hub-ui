@@ -1,5 +1,7 @@
+import placeholder from '../../assets/images/image-placeholder.jpg'
+
 const getCroppedImageURL = (url: string): string => {
-  if (!url) return ''
+  if (!url) return placeholder
   
   const target = 'media/'
   const index = url.indexOf(target) + target.length
