@@ -6,10 +6,12 @@ import GenreList from "./GenreList"
 import { IGenre } from "../hooks/useGenres"
 import PlatformSelector from "./PlatformSelector"
 import { IPlatform } from "../hooks/useGames"
+import SortSelector from "./SortSelector"
 
 export interface IGameQuery {
   genre: IGenre | null
   platform: IPlatform | null
+  sortOrder: string | null
 }
 
 const GameHub = (): JSX.Element => {
@@ -32,7 +34,8 @@ const GameHub = (): JSX.Element => {
         </Show>
 
         <GridItem area='main'>
-          <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})} />
+          <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})}/>
+          <SortSelector selectedSortOrder={gameQuery.sortOrder} onSelectSortOrder={sortOrder => setGameQuery({...gameQuery, sortOrder})}/>
           <GameGrid gameQuery={gameQuery} ></GameGrid>
         </GridItem>
       </Grid>
