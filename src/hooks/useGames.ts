@@ -1,5 +1,5 @@
+import { IGameQuery } from '../components/GameHub'
 import useData from './useData'
-import { IGenre } from './useGenres'
 
 export interface IPlatform {
   id: number
@@ -18,6 +18,13 @@ export interface IGame {
   updated: string
 }
 
-const useGames = (selectedGenre: IGenre | null, selectedPlatform: IPlatform | null) => useData<IGame>('/games', {params: {genres: selectedGenre?.id, platforms: selectedPlatform?.id}}, [selectedGenre?.id, selectedPlatform?.id])
+const useGames = (gameQuery: IGameQuery) => {
+  return useData<IGame>('/games', {
+    params: {
+      genres: gameQuery.genre?.id,
+      platforms: gameQuery.platform?.id
+    }
+  }, [gameQuery])
+}
 
 export default useGames

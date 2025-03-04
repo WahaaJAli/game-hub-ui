@@ -5,15 +5,14 @@ import Error from './Error'
 import Prompt from './Prompt'
 import GameCardSkeleton from './GameCardSkeleton'
 import GameCardContainer from './GameCardContainer'
-import { IGenre } from '../hooks/useGenres'
+import { IGameQuery } from './GameHub'
 
 interface GameGridProps {
-  selectedGenre: IGenre | null
-  selectedPlatform: IPlatform | null
+  gameQuery: IGameQuery
 }
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
-	const { data: games, error, isLoading } = useGames(selectedGenre, selectedPlatform)
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+	const { data: games, error, isLoading } = useGames(gameQuery)
 
   return (
     <>

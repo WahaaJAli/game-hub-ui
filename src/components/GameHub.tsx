@@ -7,9 +7,13 @@ import { IGenre } from "../hooks/useGenres"
 import PlatformSelector from "./PlatformSelector"
 import { IPlatform } from "../hooks/useGames"
 
+export interface IGameQuery {
+  genre: IGenre | null
+  platform: IPlatform | null
+}
+
 const GameHub = (): JSX.Element => {
-  const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null)
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(null)
+  const [gameQuery, setGameQuery] = useState<IGameQuery>({} as IGameQuery)
 
   return (
     <>
@@ -23,13 +27,13 @@ const GameHub = (): JSX.Element => {
 
         <Show above="lg">
           <GridItem area='aside'>
-            <GenreList selectedGenre={selectedGenre} onSelectGenre={genre => setSelectedGenre(genre)}/>
+            <GenreList selectedGenre={gameQuery.genre} onSelectGenre={genre => setGameQuery({...gameQuery, genre})}/>
           </GridItem>
         </Show>
 
         <GridItem area='main'>
-          <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={platform => setSelectedPlatform(platform)} />
-          <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre} ></GameGrid>
+          <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})} />
+          <GameGrid gameQuery={gameQuery} ></GameGrid>
         </GridItem>
       </Grid>
     </>
