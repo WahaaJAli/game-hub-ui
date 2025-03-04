@@ -1,4 +1,4 @@
-import placeholder from '../../assets/images/image-placeholder.jpg'
+import placeholder from '../../assets/images/no-image-placeholder.jpg'
 
 const getCroppedImageURL = (url: string): string => {
   if (!url) return placeholder

@@ -9,6 +9,9 @@ const theme: ThemeOverride = extendTheme({
       '::-webkit-scrollbar': {
         display: 'none',
       },
+      'form': {
+        width: '100%'
+      }
     },
   },
 })

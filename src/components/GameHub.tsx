@@ -11,7 +11,8 @@ import SortSelector from "./SortSelector"
 export interface IGameQuery {
   genre: IGenre | null
   platform: IPlatform | null
-  sortOrder: string | null
+  sortOrder: string
+  searchText: string
 }
 
 const GameHub = (): JSX.Element => {
@@ -24,7 +25,7 @@ const GameHub = (): JSX.Element => {
         paddingX={4} marginBottom={4}>
         
         <GridItem area='nav'>
-          <NavBar></NavBar>
+          <NavBar onSearch={searchText => setGameQuery({...gameQuery, searchText})} ></NavBar>
         </GridItem>
 
         <Show above="lg">
