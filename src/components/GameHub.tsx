@@ -7,6 +7,7 @@ import { IGenre } from "../hooks/useGenres"
 import PlatformSelector from "./PlatformSelector"
 import { IPlatform } from "../hooks/useGames"
 import SortSelector from "./SortSelector"
+import GameHeading from "./GameHeading"
 
 export interface IGameQuery {
   genre: IGenre | null
@@ -35,6 +36,7 @@ const GameHub = (): JSX.Element => {
         </Show>
 
         <GridItem area='main'>
+          <GameHeading gameQuery={gameQuery} />
           <Flex>
             <Box marginRight={2}>
               <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})}/>

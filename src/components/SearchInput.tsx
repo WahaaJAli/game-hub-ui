@@ -1,6 +1,6 @@
 import { HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
 import Icons from '../icons/Icons'
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface SearchInputProps {
   onSearch: (searchText: string) => void

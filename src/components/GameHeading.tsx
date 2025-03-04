@@ -1,0 +1,17 @@
+import { Heading } from '@chakra-ui/react'
+import { IGameQuery } from './GameHub'
+
+interface GameHeadingProps {
+  gameQuery: IGameQuery
+}
+
+const GameHeading = ({ gameQuery: { genre, platform } }: GameHeadingProps) => {
+  const isValidGameQuery = platform?.name || genre?.name
+  const heading: string = isValidGameQuery ? `${platform?.name || ''} ${genre?.name || ''} Games` : 'All Games'
+
+  return (
+    <Heading as='h1' fontSize='5xl' marginBottom={5} >{heading}</Heading>
+  )
+}
+
+export default GameHeading
