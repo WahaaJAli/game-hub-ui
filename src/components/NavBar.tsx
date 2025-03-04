@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Text } from '@chakra-ui/react'
+import { HStack, Image } from '@chakra-ui/react'
 import { JSX } from 'react'
 import logo from '../svgs/aveda.svg'
 import ColorModeSwitch from './ColorModeSwitch'
@@ -13,7 +13,7 @@ const NavBar = ({ onSearch }: NavBarProps): JSX.Element => {
     <>
       <HStack paddingY={6}>
         <Image src={logo} width='10%' marginRight='10px' />
-        <Text whiteSpace='nowrap' fontSize='xl'>AQSH GAME HUB</Text>
+        {/* <Text whiteSpace='nowrap' fontSize='xl'>AQSH GAME HUB</Text> */}
         <SearchInput onSearch={onSearch} />
         <ColorModeSwitch />
       </HStack>
