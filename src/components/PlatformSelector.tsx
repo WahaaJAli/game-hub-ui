@@ -21,7 +21,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: PlatformSelect
 
       {platformsAvailable &&
         <Menu>
-          <MenuButton as={Button} rightIcon={<Icons.ChevronDown />} marginRight={2} >{selectedPlatform?.name || 'Platforms'}</MenuButton>
+          <MenuButton as={Button} rightIcon={<Icons.ChevronDown />} >{selectedPlatform?.name || 'Platforms'}</MenuButton>
           <MenuList>
             {platforms?.map(platform => {
               const MenuIcon = IconsMap[platform.slug] || Icons.GameController
