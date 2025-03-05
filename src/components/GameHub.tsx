@@ -5,9 +5,9 @@ import GameGrid from "./GameGrid"
 import GenreList from "./GenreList"
 import { IGenre } from "../hooks/useGenres"
 import PlatformSelector from "./PlatformSelector"
-import { IPlatform } from "../hooks/useGames"
 import SortSelector from "./SortSelector"
 import GameHeading from "./GameHeading"
+import { IPlatform } from "../hooks/usePlatforms"
 
 export interface IGameQuery {
   genre: IGenre | null

@@ -1,9 +1,8 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { IPlatform } from '../hooks/useGames'
 import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
-import usePlatforms from '../hooks/usePlatforms'
+import usePlatforms, { IPlatform } from '../hooks/usePlatforms'
 
 interface PlatformSelectorProps {
   selectedPlatform: IPlatform | null
