@@ -1,6 +1,12 @@
-import useData from "./useData";
-import { IPlatform } from "./useGames";
+import platforms from "../data/platforms"
 
-const usePlatforms = () => useData<IPlatform>('/platforms/lists/parents')
+export interface IPlatform {
+  id: number
+  name: string
+  slug: string
+}
+
+// const usePlatforms = () => useData<IPlatform>('/platforms/lists/parents')
+const usePlatforms = () => ({ data: platforms, isLoading: false, error: null })
 
 export default usePlatforms

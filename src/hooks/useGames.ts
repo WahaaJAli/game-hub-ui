@@ -1,11 +1,6 @@
 import { IGameQuery } from '../components/GameHub'
+import { IPlatform } from './usePlatforms'
 import useData from './useData'
-
-export interface IPlatform {
-  id: number
-  name: string
-  slug: string
-}
 export interface IGame {
   id: number
   background_image: string
