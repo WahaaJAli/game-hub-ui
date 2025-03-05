@@ -23,6 +23,11 @@ const theme: ThemeOverride = extendTheme({
       '::-webkit-scrollbar': {
         display: 'none',
       },
+      '::selection': {
+        background: 'gray.600',
+        color: 'white',
+        '-webkit-text-fill-color': 'white',
+      },
       'form': {
         width: '100%'
       }
