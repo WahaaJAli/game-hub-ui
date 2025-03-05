@@ -12,7 +12,7 @@ export interface IGame {
   metacritic: number
   name: string
   parent_platforms: { platform: IPlatform }[]
-  rating: number
+  rating_top: number
   released: string
   slug: string
   updated: string
