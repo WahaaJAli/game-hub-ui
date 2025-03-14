@@ -11,16 +11,16 @@ interface GenreListProps {
 
 const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres()
-  const genresAvailable: boolean = genres?.length !== 0
+  const isGenreList: boolean = genres?.length !== 0
 
   const getFontWeight = (genreId: number): string => genreId === selectedGenre?.id ? 'bold' : 'normal' 
 
   return (
     <>
-      { (!genresAvailable && !isLoading && !error) && (<Prompt>No item(s) found!</Prompt>) }
+      { (!isGenreList && !isLoading && !error) && (<Prompt>No item(s) found!</Prompt>) }
       { error && null }
 
-      { genresAvailable &&
+      { isGenreList &&
         <>
           <Heading as='h4' fontSize='2xl' mb={3} >Genres</Heading>
           <List>

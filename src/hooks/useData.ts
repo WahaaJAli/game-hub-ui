@@ -7,7 +7,7 @@ interface FetchResponse<T> {
   results: T[]
 }
 
-const useData = <T>(endpoint: string, requestConfigs?: AxiosRequestConfig, deps?: any[] ) => {
+const useData = <T>(endpoint: string, requestConfigs?: AxiosRequestConfig, deps?: any[]) => {
   useEffect(() => { getData() }, deps ? [...deps]: [])
 
   const [data, setData] = useState<T[]>()

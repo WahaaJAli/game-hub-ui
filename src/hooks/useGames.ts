@@ -14,14 +14,16 @@ export interface IGame {
 }
 
 const useGames = (gameQuery: IGameQuery) => {
-  return useData<IGame>('/games', {
+  const requestConfigs = {
     params: {
       genres: gameQuery.genre?.id,
       platforms: gameQuery.platform?.id,
       ordering: gameQuery.sortOrder,
       search: gameQuery.searchText
     }
-  }, [gameQuery])
+  }
+
+  return useData<IGame>('/games', requestConfigs, [gameQuery])
 }
 
 export default useGames
