@@ -1,8 +1,9 @@
 import { Button, Heading, HStack, Image, List, ListItem } from '@chakra-ui/react'
-import useGenres, { IGenre } from '../hooks/useGenres'
+import useGenres from '../hooks/useGenres'
+import { IGenre } from '../server/GenreService'
 import getCroppedImageURL from '../utilities/image-url'
-import Prompt from './Prompt'
 import GenreListSkeleton from './GenreListSkeleton'
+import Prompt from './Prompt'
 
 interface GenreListProps {
   selectedGenre: IGenre | null
@@ -11,7 +12,7 @@ interface GenreListProps {
 
 const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres()
-  const isGenreList: boolean = genres?.length !== 0
+  const isGenreList: boolean = genres?.results?.length !== 0
 
   const getFontWeight = (genreId: number): string => genreId === selectedGenre?.id ? 'bold' : 'normal' 
 
@@ -25,7 +26,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
           <Heading as='h4' fontSize='2xl' mb={3} >Genres</Heading>
           <List>
             { isLoading && [...Array(16)].map((_, index) => <GenreListSkeleton key={index} />) }
-            {genres?.map(genre => 
+            {genres?.results?.map(genre => 
               <ListItem key={genre.id} py='5px'>
                 <HStack>
                   <Image src={getCroppedImageURL(genre.image_background)} boxSize='32px' borderRadius={3} objectFit='cover' />

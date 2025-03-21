@@ -1,30 +1,28 @@
 import api from "./api"
 
-class Service {
-  controller = new AbortController()
+class Service<T> {
   constructor(public endPoint: string) {}
 
-  get<I>() {
-    const request = api.get<I>(this.endPoint, { signal: this.controller.signal })
-    return { request, cancel: () => this.controller.abort() }
+  get = async <I>() => {
+    return (await api.get<I>(this.endPoint)).data
   }
 
-  getById<I>(id: string) {
-    return api.get<I>(`${this.endPoint}/${id}`)
+  getById = async (id: string) => {
+    return (await api.get<T>(`${this.endPoint}/${id}`)).data
   }
 
-  create<I>(entity: I) {
-    return api.post<I>(this.endPoint, entity)
+  create = async (entity: T) => {
+    return (await api.post(this.endPoint, entity)).data
   }
 
-  update<I>(id: string, entity: I) {
-    return api.put<I>(`${this.endPoint}/${id}`, entity)
+  update = async (id: string, entity: T) => {
+    return (await api.put(`${this.endPoint}/${id}`, entity)).status
   }
 
-  delete<I>(id: string) {
-    return api.delete<I>(`${this.endPoint}/${id}`)
+  delete = async (id: string) => {
+    return (await api.delete<T>(`${this.endPoint}/${id}`)).status
   }
 }
 
-const create = (endPoint: string) => new Service(endPoint)
-export default create
+// const create = (endPoint: string) => new Service(endPoint)
+export default Service
