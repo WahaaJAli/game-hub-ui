@@ -26,7 +26,7 @@ const theme: ThemeOverride = extendTheme({
       '::selection': {
         background: 'gray.600',
         color: 'white',
-        '-webkit-text-fill-color': 'white',
+        WebkitTextFillColor: 'white',
       },
       'form': {
         width: '100%'
