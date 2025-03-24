@@ -12,7 +12,7 @@ interface GenreListProps {
 
 const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres()
-  const isGenreList: boolean = genres?.results?.length !== 0
+  const isGenreList: boolean = genres?.count !== 0
 
   const getFontWeight = (genreId: number): string => genreId === selectedGenre?.id ? 'bold' : 'normal' 
 

@@ -1,12 +1,16 @@
+import { useQuery } from "@tanstack/react-query"
+import { CACHE_KEY_PLATFORMS, ONE_DAY } from "../data/Constants"
 import platforms from "../data/platforms"
+import { FetchResponse } from "../server/GenreService"
+import PlatformService, { IPlatform } from "../server/PlatformService"
 
-export interface IPlatform {
-  id: number
-  name: string
-  slug: string
+const usePlatforms = () => {
+  return useQuery({
+    queryKey: CACHE_KEY_PLATFORMS,
+    queryFn: PlatformService.get<FetchResponse<IPlatform>>,
+    staleTime: ONE_DAY,
+    initialData: { count: platforms.length, results: platforms}
+  })
 }
-
-// const usePlatforms = () => useData<IPlatform>('/platforms/lists/parents')
-const usePlatforms = () => ({ data: platforms, isLoading: false, error: null })
 
 export default usePlatforms

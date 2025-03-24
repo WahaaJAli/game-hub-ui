@@ -2,7 +2,8 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
-import usePlatforms, { IPlatform } from '../hooks/usePlatforms'
+import { IPlatform } from '../server/PlatformService'
+import usePlatforms from '../hooks/usePlatforms'
 
 interface PlatformSelectorProps {
   selectedPlatform: IPlatform | null
@@ -11,7 +12,7 @@ interface PlatformSelectorProps {
 
 const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: PlatformSelectorProps) => {
   const { data: platforms, error, isLoading } = usePlatforms()
-  const platformsAvailable: boolean = platforms?.length !== 0
+  const platformsAvailable: boolean = platforms?.count !== 0
 
   return (
     <>
@@ -22,7 +23,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: PlatformSelect
         <Menu>
           <MenuButton as={Button} rightIcon={<Icons.ChevronDown />} >{selectedPlatform?.name || 'Platforms'}</MenuButton>
           <MenuList>
-            {platforms?.map(platform => {
+            {platforms?.results.map(platform => {
               const MenuIcon = IconsMap[platform.slug] || Icons.GameController
               return <MenuItem onClick={() => onSelectPlatform(platform)} key={platform.id} icon={<MenuIcon />} >{platform.name}</MenuItem>
             })
