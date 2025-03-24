@@ -1,9 +1,5 @@
+import { FetchResponse } from './api'
 import Service from './service'
-
-export interface FetchResponse<T> {
-  results: T[]
-  count: number | null
-}
 
 export interface IGenre {
   id: number

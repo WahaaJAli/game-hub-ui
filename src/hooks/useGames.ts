@@ -1,29 +1,21 @@
-import { IGameQuery } from '../components/GameHub'
-import { IPlatform } from './usePlatforms'
-import useData from './useData'
-export interface IGame {
-  id: number
-  background_image: string
-  metacritic: number
-  name: string
-  parent_platforms: { platform: IPlatform }[]
-  rating_top: number
-  released: string
-  slug: string
-  updated: string
-}
+import { CACHE_KEY_GAMES, ONE_MINUTE } from '../data/Constants'
+import { FetchResponse } from '../server/api'
+import { useQuery } from '@tanstack/react-query'
+import GameService, { IGame, IGameQuery } from '../server/GameService'
 
 const useGames = (gameQuery: IGameQuery) => {
-  const requestConfigs = {
-    params: {
-      genres: gameQuery.genre?.id,
-      platforms: gameQuery.platform?.id,
-      ordering: gameQuery.sortOrder,
-      search: gameQuery.searchText
-    }
-  }
-
-  return useData<IGame>('/games', requestConfigs, [gameQuery])
+  return useQuery({
+    queryKey: [CACHE_KEY_GAMES, gameQuery],
+    queryFn: () => GameService.get<FetchResponse<IGame>>({
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText
+      }
+    }),
+    staleTime: ONE_MINUTE
+  })
 }
 
 export default useGames

@@ -1,10 +1,11 @@
+import { AxiosRequestConfig } from "axios"
 import api from "./api"
 
 class Service<T> {
   constructor(public endPoint: string) {}
 
-  get = async <I>() => {
-    return (await api.get<I>(this.endPoint)).data
+  get = async <I>(queryParams?: AxiosRequestConfig) => {
+    return (await api.get<I>(this.endPoint, {...queryParams})).data
   }
 
   getById = async (id: string) => {

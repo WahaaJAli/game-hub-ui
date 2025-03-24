@@ -1,20 +1,12 @@
 import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react"
 import { JSX, useState } from "react"
-import NavBar from "./NavBar"
+import { IGameQuery } from "../server/GameService"
 import GameGrid from "./GameGrid"
+import GameHeading from "./GameHeading"
 import GenreList from "./GenreList"
-import { IGenre } from "../hooks/useGenres"
+import NavBar from "./NavBar"
 import PlatformSelector from "./PlatformSelector"
 import SortSelector from "./SortSelector"
-import GameHeading from "./GameHeading"
-import { IPlatform } from "../hooks/usePlatforms"
-
-export interface IGameQuery {
-  genre: IGenre | null
-  platform: IPlatform | null
-  sortOrder: string
-  searchText: string
-}
 
 const GameHub = (): JSX.Element => {
   const [gameQuery, setGameQuery] = useState<IGameQuery>({} as IGameQuery)
