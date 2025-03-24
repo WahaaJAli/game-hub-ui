@@ -1,4 +1,3 @@
-import { FetchResponse } from './api'
 import Service from './service'
 
 export interface IGenre {
@@ -8,4 +7,4 @@ export interface IGenre {
   slug: string
 }
 
-export default new Service<FetchResponse<IGenre>>('/genres')
+export default new Service<IGenre>('/genres')

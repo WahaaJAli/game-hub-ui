@@ -1,4 +1,3 @@
-import { FetchResponse } from './api'
 import { IGenre } from './GenreService'
 import { IPlatform } from './PlatformService'
 import Service from './service'
@@ -22,4 +21,4 @@ export interface IGame {
   updated: string
 }
 
-export default new Service<FetchResponse<IGame>>('/games')
+export default new Service<IGame>('/games')

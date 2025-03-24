@@ -1,4 +1,3 @@
-import { FetchResponse } from "./api"
 import Service from "./service"
 
 export interface IPlatform {
@@ -7,4 +6,4 @@ export interface IPlatform {
   slug: string
 }
 
-export default new Service<FetchResponse<IPlatform>>('/platforms/lists/parents')
+export default new Service<IPlatform>('/platforms/lists/parents')
