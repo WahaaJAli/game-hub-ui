@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react'
-import { IGameQuery } from './GameHub'
+import { IGameQuery } from '../server/GameService'
 
 interface GameHeadingProps {
   gameQuery: IGameQuery

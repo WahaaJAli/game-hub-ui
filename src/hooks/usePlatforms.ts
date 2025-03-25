@@ -8,7 +8,7 @@ const usePlatforms = () => {
     queryKey: [CACHE_KEY_PLATFORMS],
     queryFn: PlatformService.get,
     staleTime: ONE_DAY,
-    initialData: { count: platforms.length, results: platforms}
+    initialData: { count: platforms.length, next: null, results: platforms}
   })
 }
 
