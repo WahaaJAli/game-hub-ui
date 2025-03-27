@@ -1,4 +1,4 @@
-import { CACHE_KEY_GAMES, ONE_MINUTE } from '../data/Constants'
+import { CACHE_KEY_GAMES, ONE_DAY } from '../data/Constants'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import GameService, { IGameQuery } from '../server/GameService'
 
@@ -14,7 +14,7 @@ const useGames = (gameQuery: IGameQuery) => {
         page: pageParam
       }
     }),
-    staleTime: ONE_MINUTE,
+    staleTime: ONE_DAY,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined

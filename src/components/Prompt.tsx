@@ -9,7 +9,7 @@ interface PromptProps {
 const Prompt = ({children}: PromptProps): JSX.Element => {
   return (
     <>
-      <Text fontSize='60%' fontStyle='italic' fontWeight='thin'>{children}</Text>
+      <Text fontStyle='italic' fontWeight='thin'>{children}</Text>
     </>
   )
 }
