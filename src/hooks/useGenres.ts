@@ -5,9 +5,9 @@ import GenreService from '../server/GenreService'
 
 const useGenres = () => useQuery({
   queryKey: [CACHE_KEY_GENRES],
-  queryFn: GenreService.get,
+  queryFn: () => GenreService.get(),
   staleTime: ONE_DAY,
-  initialData: { count: genres.length, next: null, results: genres }
+  initialData: genres
 })
 
 export default useGenres

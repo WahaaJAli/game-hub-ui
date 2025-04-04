@@ -6,9 +6,9 @@ import PlatformService from "../server/PlatformService"
 const usePlatforms = () => {
   return useQuery({
     queryKey: [CACHE_KEY_PLATFORMS],
-    queryFn: PlatformService.get,
+    queryFn: () => PlatformService.get(),
     staleTime: ONE_DAY,
-    initialData: { count: platforms.length, next: null, results: platforms}
+    initialData: platforms
   })
 }
 
