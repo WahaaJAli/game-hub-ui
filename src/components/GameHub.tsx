@@ -23,7 +23,7 @@ const GameHub = (): JSX.Element => {
 
         <Show above="lg">
           <GridItem area='aside'>
-            <GenreList selectedGenre={gameQuery.genre} onSelectGenre={genre => setGameQuery({...gameQuery, genre})}/>
+            <GenreList selectedGenreId={gameQuery.genreId} onSelectGenre={genreId => setGameQuery({...gameQuery, genreId})}/>
           </GridItem>
         </Show>
 
@@ -31,7 +31,7 @@ const GameHub = (): JSX.Element => {
           <GameHeading gameQuery={gameQuery} />
           <Flex>
             <Box mr={2}>
-              <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={platform => setGameQuery({...gameQuery, platform})}/>
+              <PlatformSelector selectedPlatformId={gameQuery.platformId} onSelectPlatformId={platformId => setGameQuery({...gameQuery, platformId})}/>
             </Box>
             <SortSelector selectedSortOrder={gameQuery.sortOrder} onSelectSortOrder={sortOrder => setGameQuery({...gameQuery, sortOrder})}/>
           </Flex>

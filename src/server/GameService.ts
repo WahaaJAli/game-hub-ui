@@ -1,10 +1,9 @@
-import { IGenre } from './GenreService'
 import { IPlatform } from './PlatformService'
 import Service from './service'
 
 export interface IGameQuery {
-  genre: IGenre | null
-  platform: IPlatform | null
+  genreId?: number
+  platformId?: number
   sortOrder: string
   searchText: string
 }

@@ -1,20 +1,19 @@
 import { Button, Heading, HStack, Image, List, ListItem } from '@chakra-ui/react'
 import useGenres from '../hooks/useGenres'
-import { IGenre } from '../server/GenreService'
 import getCroppedImageURL from '../utilities/image-url'
 import GenreListSkeleton from './GenreListSkeleton'
 import Prompt from './Prompt'
 
 interface GenreListProps {
-  selectedGenre: IGenre | null
-  onSelectGenre: (genre: IGenre) => void
+  selectedGenreId?: number
+  onSelectGenre: (genreId: number) => void
 }
 
-const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
+const GenreList = ({ selectedGenreId, onSelectGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres()
   const isGenreList: boolean = genres?.count !== 0
 
-  const getFontWeight = (genreId: number): string => genreId === selectedGenre?.id ? 'bold' : 'normal' 
+  const getFontWeight = (genreId: number): string => genreId === selectedGenreId ? 'bold' : 'normal' 
 
   return (
     <>
@@ -30,7 +29,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
               <ListItem key={genre.id} py='5px'>
                 <HStack>
                   <Image src={getCroppedImageURL(genre.image_background)} boxSize='32px' borderRadius={3} objectFit='cover' />
-                  <Button fontWeight={getFontWeight(genre.id)} onClick={() => onSelectGenre(genre)} fontSize='16px' variant='unstyled'>{genre.name}</Button>
+                  <Button fontWeight={getFontWeight(genre.id)} onClick={() => onSelectGenre(genre.id)} fontSize='16px' variant='unstyled'>{genre.name}</Button>
                 </HStack>
               </ListItem>
             )}
