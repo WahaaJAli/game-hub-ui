@@ -3,6 +3,7 @@ import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
 import usePlatforms from '../hooks/usePlatforms'
+import usePlatform from '../hooks/usePlatform'
 
 interface PlatformSelectorProps {
   selectedPlatformId?: number
@@ -11,8 +12,10 @@ interface PlatformSelectorProps {
 
 const PlatformSelector = ({ selectedPlatformId, onSelectPlatformId }: PlatformSelectorProps) => {
   const { data: platforms, error, isLoading } = usePlatforms()
+  const selectedPlatformName = usePlatform(selectedPlatformId)
+  
   const platformsAvailable: boolean = platforms?.count !== 0
-  const selectedPlatformName = platforms.results.find(platform => platform.id === selectedPlatformId)?.name
+
   return (
     <>
       {(!platformsAvailable && !isLoading && !error) && (<Prompt>No item(s) found!</Prompt>)}
