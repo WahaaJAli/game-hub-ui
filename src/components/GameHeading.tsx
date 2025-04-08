@@ -1,12 +1,11 @@
 import { Heading } from '@chakra-ui/react'
-import { useContext } from 'react'
-import GameQueryContext from './contexts/GameQueryContext'
+import useGameQuery from '../hooks/useGameQuery'
 import useGenre from '../hooks/useGenre'
 import usePlatform from '../hooks/usePlatform'
 
 
 const GameHeading = () => {
-  const { gameQuery: { genreId, platformId } } = useContext(GameQueryContext)
+  const { gameQuery: { genreId, platformId } } = useGameQuery()
 
   const selectedGenreName = useGenre(genreId)
   const selectedPlatformName = usePlatform(platformId)

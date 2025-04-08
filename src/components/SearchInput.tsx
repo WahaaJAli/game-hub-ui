@@ -1,10 +1,10 @@
 import { HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
-import { JSX, useContext, useEffect, useRef } from 'react'
-import GameQueryContext from './contexts/GameQueryContext'
+import { JSX, useEffect, useRef } from 'react'
 import Icons from '../icons/Icons'
+import useGameQuery from '../hooks/useGameQuery'
 
 const SearchInput = (): JSX.Element => {
-  const { dispatch } = useContext(GameQueryContext)
+  const { dispatch } = useGameQuery()
   const ref = useRef<HTMLInputElement>(null)
   
   useEffect(() => {

@@ -1,10 +1,9 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { useContext } from 'react'
-import GameQueryContext from './contexts/GameQueryContext'
 import Icons from '../icons/Icons'
+import useGameQuery from '../hooks/useGameQuery'
 
 const SortSelector = () => {
-  const { gameQuery, dispatch } = useContext(GameQueryContext)
+  const { gameQuery, dispatch } = useGameQuery()
   const SortOrders = [
     { sortKey: '',            label: 'Relevance',       icon: Icons.Relevance     },
     { sortKey: '-added',      label: 'Date Added',      icon: Icons.DateAdded     },
@@ -22,7 +21,7 @@ const SortSelector = () => {
       <MenuList>
         {SortOrders.map(({ sortKey, label, icon: Icon}) => 
           (
-            <MenuItem key={sortKey} icon={<Icon/>} value={sortKey}
+            <MenuItem key={sortKey} icon={<Icon />} value={sortKey}
               onClick={() => dispatch({ type: 'SORT_ORDER', sortOrder: sortKey})} >{label}
             </MenuItem>
           )

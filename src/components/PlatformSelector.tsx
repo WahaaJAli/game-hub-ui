@@ -1,15 +1,14 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { useContext } from 'react'
-import GameQueryContext from './contexts/GameQueryContext'
 import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
+import useGameQuery from '../hooks/useGameQuery'
 import usePlatform from '../hooks/usePlatform'
 import usePlatforms from '../hooks/usePlatforms'
 
 const PlatformSelector = () => {
   const { data: platforms, error, isLoading } = usePlatforms()
-  const { gameQuery, dispatch } = useContext(GameQueryContext)
+  const { gameQuery, dispatch } = useGameQuery()
   const selectedPlatformName = usePlatform(gameQuery.platformId)
   
   const platformsAvailable: boolean = platforms?.count !== 0

@@ -3,14 +3,14 @@ import Error from './Error'
 import GameCard from './GameCard'
 import GameCardContainer from './GameCardContainer'
 import GameCardSkeleton from './GameCardSkeleton'
-import GameQueryContext from './contexts/GameQueryContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Prompt from './Prompt'
-import React, { useContext } from 'react'
+import React from 'react'
+import useGameQuery from '../hooks/useGameQuery'
 import useGames from '../hooks/useGames'
 
 const GameGrid = () => {
-  const { gameQuery } = useContext(GameQueryContext)
+  const { gameQuery } = useGameQuery()
 	const { data: games, error, isLoading, hasNextPage, fetchNextPage } = useGames(gameQuery)
   const fetchedGamesCount = games?.pages.reduce((total, games) => total + games.results.length, 0) || 0
 
@@ -27,17 +27,17 @@ const GameGrid = () => {
             { 
               isLoading && [...Array(6)].map((_, index) => 
               <GameCardContainer key={index}>
-                <GameCardSkeleton/>
+                <GameCardSkeleton />
               </GameCardContainer>)
             }
-            
+
             {
               games?.pages.map((page, index) => (
                 <React.Fragment key={index}>
                   {page.results.map(game => 
                     (
                       <GameCardContainer key={game.id}>
-                        <GameCard game={game}></GameCard>
+                        <GameCard game={game} />
                       </GameCardContainer>
                     )
                   )}
