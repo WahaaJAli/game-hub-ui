@@ -17,9 +17,9 @@ interface sortAction {
   sortOrder: string
 }
 
-type Action = genreAction | platformAction | searchAction | sortAction
+export type GameQueryAction = genreAction | platformAction | searchAction | sortAction
 
-const GameReducer = (value: IGameQuery, action: Action) => {
+const GameReducer = (value: IGameQuery, action: GameQueryAction) => {
   switch (action.type) {
     case 'GENRE_ID':
       return { ...value, genreId: action.genreId }

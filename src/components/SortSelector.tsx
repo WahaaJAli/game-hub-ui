@@ -1,31 +1,29 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { useContext } from 'react'
+import GameQueryContext from './contexts/GameQueryContext'
 import Icons from '../icons/Icons'
 
-interface SortSelectorProps { 
-  selectedSortOrder: string | null
-  onSelectSortOrder: (order: string) => void
-}
-
-const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: SortSelectorProps) => {
+const SortSelector = () => {
+  const { gameQuery, dispatch } = useContext(GameQueryContext)
   const SortOrders = [
-    { value: '',            label: 'Relevance',       icon: Icons.Relevance     },
-    { value: '-added',      label: 'Date Added',      icon: Icons.DateAdded     },
-    { value: 'name',        label: 'Name',            icon: Icons.Name          },
-    { value: 'released',    label: 'Released Date',   icon: Icons.ReleasedDate  },
-    { value: '-metacritic', label: 'Popularity',      icon: Icons.Popularity    },
-    { value: '-rating',     label: 'Average Rating',  icon: Icons.AverageRating },
+    { sortKey: '',            label: 'Relevance',       icon: Icons.Relevance     },
+    { sortKey: '-added',      label: 'Date Added',      icon: Icons.DateAdded     },
+    { sortKey: 'name',        label: 'Name',            icon: Icons.Name          },
+    { sortKey: 'released',    label: 'Released Date',   icon: Icons.ReleasedDate  },
+    { sortKey: '-metacritic', label: 'Popularity',      icon: Icons.Popularity    },
+    { sortKey: '-rating',     label: 'Average Rating',  icon: Icons.AverageRating },
   ]
 
-  const currentSortOrder = SortOrders.find(order => order.value === selectedSortOrder)
+  const currentSortOrder = SortOrders.find(order => order.sortKey === gameQuery.sortOrder)
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<Icons.ChevronDown/>} >Order by: {currentSortOrder?.label || 'Relevance'}</MenuButton>
       <MenuList>
-        {SortOrders.map(({ value, label, icon: Icon}) => 
+        {SortOrders.map(({ sortKey, label, icon: Icon}) => 
           (
-            <MenuItem key={value} icon={<Icon/>} onClick={() => onSelectSortOrder(value)} 
-              value={value} >{label}
+            <MenuItem key={sortKey} icon={<Icon/>} value={sortKey}
+              onClick={() => dispatch({ type: 'SORT_ORDER', sortOrder: sortKey})} >{label}
             </MenuItem>
           )
         )}

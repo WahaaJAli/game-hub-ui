@@ -1,18 +1,16 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { useContext } from 'react'
+import GameQueryContext from './contexts/GameQueryContext'
 import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
-import usePlatforms from '../hooks/usePlatforms'
 import usePlatform from '../hooks/usePlatform'
+import usePlatforms from '../hooks/usePlatforms'
 
-interface PlatformSelectorProps {
-  selectedPlatformId?: number
-  onSelectPlatformId: (platformId: number) => void
-}
-
-const PlatformSelector = ({ selectedPlatformId, onSelectPlatformId }: PlatformSelectorProps) => {
+const PlatformSelector = () => {
   const { data: platforms, error, isLoading } = usePlatforms()
-  const selectedPlatformName = usePlatform(selectedPlatformId)
+  const { gameQuery, dispatch } = useContext(GameQueryContext)
+  const selectedPlatformName = usePlatform(gameQuery.platformId)
   
   const platformsAvailable: boolean = platforms?.count !== 0
 
@@ -27,7 +25,11 @@ const PlatformSelector = ({ selectedPlatformId, onSelectPlatformId }: PlatformSe
           <MenuList>
             {platforms?.results.map(platform => {
               const MenuIcon = IconsMap[platform.slug] || Icons.GameController
-              return <MenuItem onClick={() => onSelectPlatformId(platform.id)} key={platform.id} icon={<MenuIcon />} >{platform.name}</MenuItem>
+              return (
+                <MenuItem key={platform.id} icon={<MenuIcon />} 
+                  onClick={() => dispatch({ type: 'PLATFORM_ID', platformId: platform.id })} >{platform.name}
+                </MenuItem>
+              )
             })
             }
           </MenuList>

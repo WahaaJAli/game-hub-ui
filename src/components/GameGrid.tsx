@@ -1,19 +1,16 @@
-import { IGameQuery } from '../server/GameService'
 import { SimpleGrid } from '@chakra-ui/react'
 import Error from './Error'
 import GameCard from './GameCard'
 import GameCardContainer from './GameCardContainer'
 import GameCardSkeleton from './GameCardSkeleton'
-import Prompt from './Prompt'
-import useGames from '../hooks/useGames'
-import React from 'react'
+import GameQueryContext from './contexts/GameQueryContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Prompt from './Prompt'
+import React, { useContext } from 'react'
+import useGames from '../hooks/useGames'
 
-interface GameGridProps {
-  gameQuery: IGameQuery
-}
-
-const GameGrid = ({ gameQuery }: GameGridProps) => {
+const GameGrid = () => {
+  const { gameQuery } = useContext(GameQueryContext)
 	const { data: games, error, isLoading, hasNextPage, fetchNextPage } = useGames(gameQuery)
   const fetchedGamesCount = games?.pages.reduce((total, games) => total + games.results.length, 0) || 0
 
@@ -27,19 +24,23 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
           hasMore={!!hasNextPage} loader={<Prompt>Loading...</Prompt>} >
           
           <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} gap={6} py={4}>
-            { isLoading && [...Array(6)].map((_, index) => 
+            { 
+              isLoading && [...Array(6)].map((_, index) => 
               <GameCardContainer key={index}>
                 <GameCardSkeleton/>
               </GameCardContainer>)
             }
+            
             {
               games?.pages.map((page, index) => (
                 <React.Fragment key={index}>
-                  {page.results.map(game => (
-                    <GameCardContainer key={game.id}>
-                      <GameCard game={game}></GameCard>
-                    </GameCardContainer>
-                  ))}
+                  {page.results.map(game => 
+                    (
+                      <GameCardContainer key={game.id}>
+                        <GameCard game={game}></GameCard>
+                      </GameCardContainer>
+                    )
+                  )}
                 </React.Fragment>
               ))
             }
