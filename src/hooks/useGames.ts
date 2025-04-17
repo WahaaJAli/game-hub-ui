@@ -1,8 +1,11 @@
 import { CACHE_KEY_GAMES, ONE_DAY } from '../data/Constants'
+import useGameQueryStore, { IGameQuery } from '../components/store/store'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import GameService, { IGameQuery } from '../server/GameService'
+import GameService from '../server/GameService'
 
-const useGames = (gameQuery: IGameQuery) => {
+const useGames = () => {
+  const gameQuery: IGameQuery = useGameQueryStore(s => s.gameQuery)
+
   return useInfiniteQuery({
     queryKey: [CACHE_KEY_GAMES, gameQuery],
     queryFn: ({ pageParam = 1 }) => GameService.get({

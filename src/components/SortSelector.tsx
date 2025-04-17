@@ -1,9 +1,8 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import Icons from '../icons/Icons'
-import useGameQuery from '../hooks/useGameQuery'
+import useGameQueryStore from './store/store'
 
 const SortSelector = () => {
-  const { gameQuery, dispatch } = useGameQuery()
   const SortOrders = [
     { sortKey: '',            label: 'Relevance',       icon: Icons.Relevance     },
     { sortKey: '-added',      label: 'Date Added',      icon: Icons.DateAdded     },
@@ -13,18 +12,17 @@ const SortSelector = () => {
     { sortKey: '-rating',     label: 'Average Rating',  icon: Icons.AverageRating },
   ]
 
-  const currentSortOrder = SortOrders.find(order => order.sortKey === gameQuery.sortOrder)
+  const selectedSortOrder = useGameQueryStore(s => s.gameQuery.sortOrder)
+  const currentSortOrder = SortOrders.find(order => order.sortKey === selectedSortOrder)
+
+  const setSelectedSortOrder = useGameQueryStore(s => s.setSelectedSortOrder)
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<Icons.ChevronDown/>} >Order by: {currentSortOrder?.label || 'Relevance'}</MenuButton>
       <MenuList>
         {SortOrders.map(({ sortKey, label, icon: Icon}) => 
-          (
-            <MenuItem key={sortKey} icon={<Icon />} value={sortKey}
-              onClick={() => dispatch({ type: 'SORT_ORDER', sortOrder: sortKey})} >{label}
-            </MenuItem>
-          )
+          (<MenuItem key={sortKey} icon={<Icon />} value={sortKey} onClick={() => setSelectedSortOrder(sortKey)} >{label}</MenuItem>)
         )}
       </MenuList>
     </Menu>

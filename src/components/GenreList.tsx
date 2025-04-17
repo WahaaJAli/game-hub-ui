@@ -3,15 +3,17 @@ import { JSX } from 'react'
 import GenreListSkeleton from './GenreListSkeleton'
 import getCroppedImageURL from '../utilities/image-url'
 import Prompt from './Prompt'
-import useGameQuery from '../hooks/useGameQuery'
+import useGameQueryStore from './store/store'
 import useGenres from '../hooks/useGenres'
 
 const GenreList = ():JSX.Element => {
   const { data: genres, isLoading, error } = useGenres()
-  const { gameQuery, dispatch } = useGameQuery()
   const isGenreList: boolean = genres?.count !== 0
 
-  const getFontWeight = (genreId: number): string => genreId === gameQuery.genreId ? 'bold' : 'normal' 
+  const selectedGenreId = useGameQueryStore(s => s.gameQuery.genreId)
+  const getFontWeight = (genreId: number): string => genreId === selectedGenreId ? 'bold' : 'normal'
+
+  const setSelectedGenreId = useGameQueryStore(s => s.setSelectedGenreId)
 
   return (
     <>
@@ -29,7 +31,7 @@ const GenreList = ():JSX.Element => {
                 <HStack>
                   <Image src={getCroppedImageURL(genre.image_background)} boxSize='32px' borderRadius={3} objectFit='cover' />
                   <Button fontWeight={getFontWeight(genre.id)} fontSize='16px' variant='unstyled'
-                    onClick={() => dispatch({ type: 'GENRE_ID', genreId: genre.id})} >{genre.name}</Button>
+                    onClick={() => setSelectedGenreId(genre.id)} >{genre.name}</Button>
                 </HStack>
               </ListItem>
             )}

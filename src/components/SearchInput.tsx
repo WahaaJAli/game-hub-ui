@@ -1,10 +1,10 @@
 import { HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
 import { JSX, useEffect, useRef } from 'react'
 import Icons from '../icons/Icons'
-import useGameQuery from '../hooks/useGameQuery'
+import useGameQueryStore from './store/store'
 
 const SearchInput = (): JSX.Element => {
-  const { dispatch } = useGameQuery()
+  const setSearchText = useGameQueryStore(s => s.setSearchText)
   const ref = useRef<HTMLInputElement>(null)
   
   useEffect(() => {
@@ -17,7 +17,7 @@ const SearchInput = (): JSX.Element => {
 
   const submitHandler = ((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (ref.current) dispatch({ type: 'SEARCH_TEXT', searchText: ref.current.value })
+    if (ref.current) setSearchText(ref.current.value)
   })
 
   return (

@@ -1,13 +1,6 @@
 import { IPlatform } from './PlatformService'
 import Service from './service'
 
-export interface IGameQuery {
-  genreId?: number
-  platformId?: number
-  sortOrder: string
-  searchText: string
-}
-
 export interface IGame {
   id: number
   background_image: string

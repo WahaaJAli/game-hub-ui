@@ -2,16 +2,18 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import Icons from '../icons/Icons'
 import IconsMap from '../icons/IconsMap'
 import Prompt from './Prompt'
-import useGameQuery from '../hooks/useGameQuery'
+import useGameQueryStore from './store/store'
 import usePlatform from '../hooks/usePlatform'
 import usePlatforms from '../hooks/usePlatforms'
 
 const PlatformSelector = () => {
   const { data: platforms, error, isLoading } = usePlatforms()
-  const { gameQuery, dispatch } = useGameQuery()
-  const selectedPlatformName = usePlatform(gameQuery.platformId)
-  
   const platformsAvailable: boolean = platforms?.count !== 0
+
+  const selectedPlatformId = useGameQueryStore(s => s.gameQuery.platformId)
+  const selectedPlatformName = usePlatform(selectedPlatformId)
+
+  const setSelectedPlatformId = useGameQueryStore(s => s.setSelectedPlatformId)
 
   return (
     <>
@@ -26,7 +28,7 @@ const PlatformSelector = () => {
               const MenuIcon = IconsMap[platform.slug] || Icons.GameController
               return (
                 <MenuItem key={platform.id} icon={<MenuIcon />} 
-                  onClick={() => dispatch({ type: 'PLATFORM_ID', platformId: platform.id })} >{platform.name}
+                  onClick={() => setSelectedPlatformId(platform.id)} >{platform.name}
                 </MenuItem>
               )
             })
